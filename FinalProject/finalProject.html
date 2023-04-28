@@ -21,7 +21,7 @@
         <h3>WEB-115 Section.0002</h3>
         <h3>Build Your Resumé</h3>
     </header>
-    <p1>
+    <div>
         <label>Enter your first name</label><br>
         <input type="text" id="name"><br><br>
         <label>Enter your last name</label><br>
@@ -44,10 +44,10 @@
         <input type="text" id="job_title"><br><br>
         <label>Enter description of self and why you want this position</label><br>
         <textarea id="myself" name="myself" rows="4" cols="50"></textarea><br><br>
-    </p1>
+    </div>
     <div id="job_skills">
         <label>Job Skills:</label><br>
-        <input type="text" id="skill1"><br><br>
+        <input type="text" id="skill1" onfocus="this.value=''"><br><br>
         <input type="button" id="add_skill" value="Add to skills">
         <input type="button" id="deleteFirstSkill" value="Delete First Skill">
         <input type="button" id="deleteLastSkill" value="Delete Last Skill">
@@ -55,7 +55,7 @@
     </div>
     <div>
         <label>Technical Skills:</label><br>
-        <input type="text" id="tech_skill"><br><br>
+        <input type="text" id="tech_skill" onfocus="this.value=''"><br><br>
         <input type="button" id="add_tech_skill" value="Add to skills">
         <input type="button" id="deleteFirstTechSkill" value="Delete First Skill">
         <input type="button" id="deleteLastTechSkill" value="Delete Last Skill">
@@ -104,12 +104,11 @@
     <div>
         <h3>Business References</h3>
         <label>Please enter business references</label><br>
-        <textarea id="references" name="references" rows="4" cols="50"></textarea><br>
+        <textarea id="references" name="references" rows="4" cols="50" onfocus="this.value=''"></textarea><br>
         <input type="button" id="add_reference" value="Add to references">
         <input type="button" id="deleteFirstReference" value="Delete First Reference">
         <input type="button" id="deleteLastReference" value="Delete Last Reference">
         <p>List of references:</p><p id="list_of_references"></p>
-        </div>
     </div>
     <div>
         <input type="button" id="submit" value="Create Resumé">

@@ -42,7 +42,7 @@ function removeLastSkill(){
     document.getElementById("list_of_skills").innerHTML = '<ul><li>'+skills_list.join("</li><li>"); + '</l></ul>';
 }
 
-// THis is the list of business references
+// This is the list of business references
 let business_references = [];
 document.getElementById("add_reference").addEventListener("click", addToReferenceList);
 document.getElementById("deleteFirstReference").addEventListener("click", removeFirstReference);
@@ -79,7 +79,7 @@ function myWindow()
          // This is the job skills section
         skill_list = document.getElementById("list_of_skills").innerHTML = '<ul><li>'+skills_list.join("</li><li>"); + '</l></ul>';
         tech_skill_list = document.getElementById("list_of_tech_skills").innerHTML = '<ul><li>'+tech_skills_list.join("</li><li>"); + '</l></ul>';
-        reference_list = document.getElementById("list_of_references").innerHTML = '<ul><li>'+business_references.join("</li><li>"); + '</l></ul>';
+        
 
         employment1 = document.getElementById("employment1").value; // This is Employment 1
         start_date1 = document.getElementById("start_date1").value;
@@ -98,7 +98,7 @@ function myWindow()
 
         education = document.getElementById("education").value; // This is Education Background
         courses = document.getElementById("courses").value;
-        references = document.getElementById("references").value;
+        reference_list = document.getElementById("list_of_references").innerHTML = '<ul><li>'+business_references.join("</li><li>"); + '</l></ul>';
         
         myText = ('<html>\n<head>\n<title>Welcome</title>\n<link rel="stylesheet" type="text/css" href="FinalProject.css">\n</head>\n<body>\n');
         myText += ('<header>\n<h1 id="firstName">'+ visitorName +'</h1>\n<h1>'+ visitorLName + '</h1>\n');
@@ -121,7 +121,7 @@ function myWindow()
         }
         function ValidateEmail() // This is the validation function call
         {
-            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+            let mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
             if(document.getElementById("email").value.match(mailformat))
         {
             flyWindow = window.open('about:blank','myPop','width=device-width', 'initial-scale=1.0'); // This opens the new window and writes the new webpage.
