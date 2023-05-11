@@ -11,6 +11,7 @@ function addToTechSkillList(){
     boxvalue = document.getElementById('tech_skill').value;
     tech_skills_list.push(boxvalue);
     document.getElementById("list_of_tech_skills").innerHTML = '<ul><li>'+tech_skills_list.join("</li><li>"); + '</l></ul>';
+    document.getElementById("tech_skill").value = "";
 }
 function removeFirstTechSkill(){
     tech_skills_list.shift();
@@ -31,6 +32,7 @@ function addToSkillList(){
     boxvalue = document.getElementById('skill1').value;
     skills_list.push(boxvalue);
     document.getElementById("list_of_skills").innerHTML = '<ul><li>'+skills_list.join("</li><li>"); + '</l></ul>';
+    document.getElementById("skill1").value = "";
 }
 function removeFirstSkill(){
     skills_list.shift();
@@ -42,6 +44,63 @@ function removeLastSkill(){
     document.getElementById("list_of_skills").innerHTML = '<ul><li>'+skills_list.join("</li><li>"); + '</l></ul>';
 }
 
+// This is the employment history section
+let employment_info = [];
+let start_dates = [];
+let end_dates = [];
+let job_descriptions = [];
+let employment_list = [];
+let employment_stats = [];
+let counter = 0;
+document.getElementById("add_job").addEventListener("click", addToJobList);
+document.getElementById("deleteFirstJob").addEventListener("click", removeFirstJob);
+document.getElementById("deleteLastJob").addEventListener("click", removeLastJob);
+
+function addToJobList(){
+    employment_details = document.getElementById("employment").value;
+    start_date = document.getElementById("start_date").value;
+    end_date = document.getElementById("end_date").value;
+    job_description = document.getElementById("job").value;
+    counter = counter + 1;
+    employment_info.push(employment_details);
+    start_dates.push(start_date);
+    end_dates.push(end_date);
+    job_descriptions.push(job_description);
+    employment_stats = [employment_details, start_date, end_date, job_description];
+    employment_stats = employment_stats.join(', ');
+    employment_list.push(employment_stats);
+    document.getElementById("list_of_jobs").innerHTML = '<ul><li>'+employment_list.join("</li><li>"); + '</l></ul>';
+    document.getElementById("start_date").value = "";
+    document.getElementById("end_date").value = "";
+    document.getElementById("job").value = "";
+    document.getElementById("employment").value = "";
+}
+
+function removeFirstJob(){
+    if (counter > 0) {
+        counter = counter - 1;
+    }
+    
+    employment_info.shift();
+    start_dates.shift();
+    end_dates.shift();
+    job_descriptions.shift();
+    employment_list.shift();
+    document.getElementById("list_of_jobs").innerHTML = '<ul><li>'+employment_list.join("</li><li>"); + '</l></ul>';
+}
+
+function removeLastJob(){
+    if (counter > 0) {
+        counter = counter - 1;
+    }
+    employment_info.pop();
+    start_dates.pop();
+    end_dates.pop();
+    job_descriptions.pop();
+    employment_list.pop();
+    document.getElementById("list_of_jobs").innerHTML = '<ul><li>'+employment_list.join("</li><li>"); + '</l></ul>';
+
+}
 // This is the list of business references
 let business_references = [];
 document.getElementById("add_reference").addEventListener("click", addToReferenceList);
@@ -52,6 +111,7 @@ function addToReferenceList(){
     boxvalue = document.getElementById('references').value;
     business_references.push(boxvalue);
     document.getElementById("list_of_references").innerHTML = '<ul><li>'+business_references.join("</li><li>"); + '</l></ul>';
+    document.getElementById("references").value = "";
 }
 function removeFirstReference(){
     business_references.shift();
@@ -79,22 +139,6 @@ function myWindow()
          // This is the job skills section
         skill_list = document.getElementById("list_of_skills").innerHTML = '<ul><li>'+skills_list.join("</li><li>"); + '</l></ul>';
         tech_skill_list = document.getElementById("list_of_tech_skills").innerHTML = '<ul><li>'+tech_skills_list.join("</li><li>"); + '</l></ul>';
-        
-
-        employment1 = document.getElementById("employment1").value; // This is Employment 1
-        start_date1 = document.getElementById("start_date1").value;
-        end_date1 = document.getElementById("end_date1").value;
-        job1 = document.getElementById("job1").value;
-
-        employment2 = document.getElementById("employment2").value; // This is Employment 2
-        start_date2 = document.getElementById("start_date2").value;
-        end_date2 = document.getElementById("end_date2").value;
-        job2 = document.getElementById("job2").value;
-
-        employment3 = document.getElementById("employment3").value; // // This is Employment 3
-        start_date3 = document.getElementById("start_date3").value;
-        end_date3 = document.getElementById("end_date3").value;
-        job3 = document.getElementById("job3").value;
 
         education = document.getElementById("education").value; // This is Education Background
         courses = document.getElementById("courses").value;
@@ -107,10 +151,11 @@ function myWindow()
         myText += ('<div id="self">\n<h3 id="position">'+ job_title +'</h3>\n<p>'+ about_self +'</p>\n</div>\n');
         myText += ('<div id="skillset">\n<h4 class="headings">SKILLS</h4>\n'+ skill_list +'\n</div>\n');
         myText += ('<div id="technical_skillset">\n<h4 class="headings">TECHNICAL SKILLS</h4>\n'+ tech_skill_list +'\n</div>\n');
-        myText += ('<h4 class="headings">EXPERIENCE</h4>\n<div id="experience">\n<h4>' + start_date1 +' through '+ end_date1 +'</h4>\n<h4>'+ employment1 +'</h4>\n<p1>'+ job1 +'</p1>\n');
-        myText += ('<h4>' + start_date2 +' through '+ end_date2 +'</h4>\n<h4>'+ employment2 +'</h4>\n<p1>'+ job2 +'</p1>\n');
-        myText += ('<h4>' + start_date3 +' through '+ end_date3 +'</h4>\n<h4>'+ employment3 +'</h4>\n<p1>'+ job3 +'</p1>\n</div>\n');
-        myText += ('<h4 class="headings">EDUCATION</h4>\n<div id="education">\n<p class="position">'+ education +'</p>\n<h4>COURSES STUDIED</h4>\n<p>'+ courses +'</p>\n</div>\n');
+        myText += ('<h4 class="headings">EXPERIENCE</h4>\n<div id="experience">\n');
+        for (let i=0; i < counter; i++) {
+            myText += ('<h4>' + start_dates[i] +' through '+ end_dates[i] +'</h4>\n<h4>'+ employment_info[i] +'</h4>\n<p1>'+ job_descriptions[i] +'</p1>\n');
+        }
+        myText += ('</div>\n<h4 class="headings">EDUCATION</h4>\n<div id="education">\n<p class="position">'+ education +'</p>\n<h4>COURSES STUDIED</h4>\n<p>'+ courses +'</p>\n</div>\n');
         myText += ('<h4 class="headings">BUSINESS REFERENCES</h4>\n<div id="references">\n'+ reference_list +'\n</div>\n');
         myText += ('</body>\n</html>');
 
